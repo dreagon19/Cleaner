@@ -18,6 +18,8 @@ public class Program
             return;
         }
 
+        //Add Validations here 
+
         if (StaticMethods.IsPathParameterPrensent(args))
         {
             Console.WriteLine("Missing:\r\n  -path|--path         A required parameter. Write the path to the folder after this parameter");
