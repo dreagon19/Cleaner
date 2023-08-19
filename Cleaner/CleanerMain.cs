@@ -1,4 +1,4 @@
-﻿namespace Cleaner.Helpers
+﻿namespace Cleaner
 {
     public class CleanerMain
     {
@@ -9,6 +9,9 @@
             Console.WriteLine(string.Join("\n", args));
 
             var allFiles = GetAllFilesInDirectory(@"D:\Download", false);
+
+
+            //Call cleaner functions here
 
             //Console.WriteLine(string.Join("\n", allFiles));
         }
