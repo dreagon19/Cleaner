@@ -2,13 +2,13 @@
 {
     public class StaticMethods
     {
-        public static bool IsPathParameterPrensent(string[] args)
+        public static bool IsPathParameterNotPrensent(string[] args)
         {
             if (!args.Contains("--path") || !args.Contains("-path"))
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }

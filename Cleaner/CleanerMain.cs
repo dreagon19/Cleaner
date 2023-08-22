@@ -1,19 +1,29 @@
-﻿namespace Cleaner
+﻿using Cleaner.Validations;
+
+namespace Cleaner
 {
     public class CleanerMain
     {
         public void RunCleaner(string[] args)
         {
-            List<string> list = new List<string>();
+            //Validating Input
+            var inputValidated = ValidateInput(args);
 
-            Console.WriteLine(string.Join("\n", args));
+            if (inputValidated)
+            {
+                List<string> list = new List<string>();
 
-            var allFiles = GetAllFilesInDirectory(@"D:\Download", false);
+                Console.WriteLine(string.Join("\n", args));
 
+                //Get the path
+                var path = GetPath(args);
 
-            //Call cleaner functions here
+                var allFiles = GetAllFilesInDirectory(path, false);
 
-            //Console.WriteLine(string.Join("\n", allFiles));
+                //Call cleaner functions here
+
+                //Console.WriteLine(string.Join("\n", allFiles));
+            }
         }
 
         public List<string> GetAllFilesInDirectory(string targetDirectory, bool deleteDirectory)
@@ -44,9 +54,22 @@
             return allFiles;
         }
 
-        static bool IsEmptyDirectory(string dir)
+        private static bool IsEmptyDirectory(string dir)
         {
             return !Directory.EnumerateFileSystemEntries(dir).Any();
+        }
+
+        private string GetPath(string[] args)
+        {
+            return args[1];
+        }
+
+        public static bool ValidateInput(string[] args)
+        {
+            InputValidator validator = new InputValidator(args);
+            var methods = typeof(InputValidator).GetMethods();
+
+            return validator.Validate();
         }
     }
 }
